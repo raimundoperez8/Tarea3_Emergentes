@@ -690,7 +690,7 @@ def get_all_sensordata():
 #sensor update sensordata
 #Sirve
 #UPDATE params: sensor_api_key, date, medicion1, medicion2, medicion3, sensordata_id
-@app.route('/api/v1/update_sensor', methods=['Put'])
+@app.route('/api/v1/update_sensordata', methods=['Put'])
 def update_sensordata():
 
     sensor_api_key = request.args.get("sensor_api_key")
@@ -702,7 +702,7 @@ def update_sensordata():
     sensordata_id = request.args.get("sensordata_id")
 
     conn = db_conn()
-    senid = conn.execute('SELECT ID FROM sensor WHERE sensor_api_key = ?', (sensor_api_key,)).fetchone()
+    senid = conn.execute('SELECT sensor_id FROM sensor WHERE sensor_api_key = ?', (sensor_api_key,)).fetchone()
     conn.close()
 
     flag = 0
@@ -752,7 +752,7 @@ def delete_sensordata():
     sensordata_id = request.args.get("sensordata_id")
 
     conn = db_conn()
-    senid = conn.execute('SELECT ID FROM sensor WHERE sensor_api_key = ?', (sensor_api_key,)).fetchone()
+    senid = conn.execute('SELECT sensor_id FROM sensor WHERE sensor_api_key = ?', (sensor_api_key,)).fetchone()
     conn.close()
 
 
